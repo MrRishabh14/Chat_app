@@ -5,8 +5,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from "./routes/auth.routes.js"
-
-
+import chatRoutes from "./routes/chatRoutes.routes.js"
+import messageRoutes from "./routes/message.routes.js"
 dotenv.config();
 const app = express();
 const server = http.createServer(app); // needed for socket.io
@@ -23,13 +23,8 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/auth",authRoutes);
-
-
-
-// import messageRoutes from './routes/message.routes.js';
-
-// app.use('/api/messages', messageRoutes);
-
+app.use("/api/chats",chatRoutes);
+app.use("/api/message",messageRoutes);
 
 //socket connection.
 
